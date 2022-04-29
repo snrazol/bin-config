@@ -164,10 +164,10 @@
 				<div class="textres" id="largbin">4.2 m</div>
 				<hr />
 				<div class="textres" id="titre7b">Poids</div>
-				<div class="textres" id="poidsbin">1 000 kg</div>
+				<div class="textres" id="poidsbin">884 kg</div>
 				<hr />
 				<div class="textres" id="titre8">Prix de la bineuse</div>
-				<div class="textres" id="prixbin">13 832 €</div>
+				<div class="textres" id="prixbin">13 830 €</div>
 			</div>
 		</div>
 		
