@@ -167,7 +167,7 @@
 				<div class="textres" id="poidsbin">1 000 kg</div>
 				<hr />
 				<div class="textres" id="titre8">Prix de la bineuse</div>
-				<div class="textres" id="prixbin">13 230 €</div>
+				<div class="textres" id="prixbin">13 832 €</div>
 			</div>
 		</div>
 		
@@ -266,60 +266,60 @@
 			if (nbdent == 10) {
 				var nbd = 5;
 				var dentmoins = 4;
-				prix += 771;
+				prix += 806;
 				poids += 51.12;
 				var poidsmoins = 5.37;
 			} else {
 				var nbd = 3;
 				var dentmoins = 2;
-				prix += 771;
+				prix += 806;
 				poids += 48.06;
 				var poidsmoins = 2.31;
 			}
 			if (dent == 0) {
-				prix += 88;
+				prix += 92;
 				if(nbd == 5){
-					prix += 60;
+					prix += 63;
 				}
 				poids += 3.4 * nbd;
 				poidsmoins += 3.4 * dentmoins;
 			} else if (dent == 20) {
-				prix += 310;
+				prix += 324;
 				if(nbd == 5){
-					prix += 177;
+					prix += 185;
 				}
 				poids += 4.15 * nbd;
 				poidsmoins += 4.15 * dentmoins;
 			} else {
 				if (nbd == 5) {
-					prix += 589;
+					prix += 616;
 					poids += 22.01;
 					poidsmoins += 17.86;
 				} else {
-					prix += 471;
+					prix += 493;
 					poids += 13.71;
 					poidsmoins += 9.56;
 				}
 			}
 			if (optav == 3){
-				prix += 245;
+				prix += 256;
 				poids += 16.7;
 				poidsmoins += 16.7;
 			} else if (optav == 6) {
-				prix += 1061;
+				prix += 1109;
 				poids += 17.15;
 				poidsmoins += 17.15;
 			}
 			if (optar == 1) {
-				prix += 1027;
+				prix += 1073;
 				poids += 22.2;
 				poidsmoins += 22.2;
 			} else if (optar == 2) {
 				if (nbd == 5){
-					prix += 183;
+					prix += 191;
 					poids += 9.03;
 				} else {
-					prix += 162;
+					prix += 170;
 					poids += 8.31;
 				}
 			}
@@ -340,7 +340,7 @@
 				for (var i = 0; i < rampe.length; i++) {
 					if (larg <= rampe[i]) {
 						larg = rampe[i];
-						prixtot = 1330;
+						prixtot = 1391;
 						i = rampe.length;
 					}
 				}
@@ -350,7 +350,7 @@
 				for (var i = 0; i < rampe.length; i++) {
 					if (larg <= rampe[i]) {
 						larg = rampe[i];
-						prixtot = 4125 + (65 * larg);
+						prixtot = 4313 + (68 * larg);
 						i = rampe.length;
 					}
 				}
@@ -358,14 +358,14 @@
 			}
 			prixtot = parseInt(prixtot);
 			if (coutre == "Avec" || coutre == 'Con' || coutre == 'With') {
-				prixtot += 1173;
+				prixtot += 1226;
 				poidstot += 96.36;
 				poidstot = parseInt(poidstot);
 			}
 			prixtot += (rang + 1) * prix;
 			prixtot = parseInt(prixtot);
 			if(rang > 10){
-				prixtot += 385;
+				prixtot += 403;
 			}
 			prixtot = parseInt(prixtot);
 
