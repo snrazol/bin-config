@@ -221,7 +221,12 @@
 <script>
 	$(document).ready(function(){
 		var nb = 0;
+		var augm = 5;
+		var prixini = parseInt(13830 * (1 + augm / 100));
+		var milleprixini = parseInt(prixini / 1000);
+		var centprixini = ("000" + (prixini - (milleprixini * 1000))).slice(-3);
 		$('#rang').val(7);
+		$('#prixbin').text(milleprixini + ' ' + centprixini + ' €');
 		$('#ecart').val(500);
 		$('#type').val('Repliable');
 		$('#optav').val(3);
@@ -370,7 +375,7 @@
 			if(rang > 10){
 				prixtot += 403;
 			}
-			prixtot = parseInt(prixtot);
+			prixtot = parseInt(prixtot * (1 + augm / 100));
 
 			if (poidstot >= 1000){
 				var mille = parseInt(poidstot/1000);
