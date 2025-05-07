@@ -353,9 +353,6 @@
 					if (larg <= rampe[i]) {
 						larg = rampe[i];
 						prixtot = 1130;
-						//if (larg == 5){
-						//	prixtot += 30*(7-rang);
-						//}
 						i = rampe.length;
 					}
 				}
@@ -365,7 +362,7 @@
 				for (var i = 0; i < rampe.length; i++) {
 					if (larg <= rampe[i]) {
 						larg = rampe[i];
-						prixtot = 4030 - (11 * larg);
+						prixtot = 4000 + (11 * larg);
 						i = rampe.length;
 					}
 				}
