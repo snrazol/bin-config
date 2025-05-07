@@ -434,7 +434,7 @@
 			$('#titre6').text('Coutre de guidage');
 			$('#titre7').text('Largeur de poutre');
 			$('#titre7b').text('Poids');
-			$('#titre8').text('Prix de la bineuse');
+			$('#titre8').text('Prix de la bineuse*');
 			$('#titre9').text('Choix du module');
 			$('#titre10').text('Nombre de dents');
 			$('#titre11').text('Type de dents');
