@@ -18,6 +18,7 @@
 			border-bottom: 1px dashed black;
 			padding-bottom: 10px;
 			margin-bottom: 10px;
+			margin-top: 10px;
 		}
 
 		@font-face {
@@ -51,6 +52,12 @@
 		.textres {
 			font-weight: bold;
 			font-size: 1.2em;
+			text-align: center;
+		}
+
+		.textres2 {
+			font-style: italic;
+			font-size: 0.8em;
 			text-align: center;
 		}
 
@@ -113,7 +120,7 @@
 		</center>
 		<div class="texttitle" id="titre2">Caracteristiques generales</div>
 		<div class="texttitle" id="nombin">BMIR 7 ou BSIR 7</div>
-		<div class="row justify-content-center cargen">
+		<div class="row justify-content-center">
 			<div class="col-5 col-sm-4 col-md-3 col-lg-2 my-auto mr-2">
 				<div class="row choix">
 					<label class="col-12 selectlabel" for="type" id="titre3">Type de bineuse</label>
@@ -166,10 +173,11 @@
 				<div class="textres" id="titre7b">Poids</div>
 				<div class="textres" id="poidsbin">884 kg</div>
 				<hr />
-				<div class="textres" id="titre8">Prix de la bineuse</div>
-				<div class="textres" id="prixbin">13 830 €</div>
+				<div class="textres" id="titre8">Prix de la bineuse*</div>
+				<div class="textres" id="prixbin">13 855 €</div>
 			</div>
 		</div>
+		<div class="textres2 cargen" id="attprix">Il ne s'agit que d'une estimation de prix, cela ne correspond en rien au prix définitif.</div>
 		
 		<div class="texttitle" id="titre9">Choix du module</div>
 		<div class="row justify-content-center">
@@ -221,8 +229,8 @@
 <script>
 	$(document).ready(function(){
 		var nb = 0;
-		var augm = 5;
-		var prixini = parseInt(13830 * (1 + augm / 100));
+		//var augm = 5;
+		var prixini = parseInt(13855);
 		var milleprixini = parseInt(prixini / 1000);
 		var centprixini = ("000" + (prixini - (milleprixini * 1000))).slice(-3);
 		$('#rang').val(7);
@@ -271,60 +279,60 @@
 			if (nbdent == 10) {
 				var nbd = 5;
 				var dentmoins = 4;
-				prix += 806;
+				prix += 850;
 				poids += 51.12;
 				var poidsmoins = 5.37;
 			} else {
 				var nbd = 3;
 				var dentmoins = 2;
-				prix += 806;
+				prix += 850;
 				poids += 48.06;
 				var poidsmoins = 2.31;
 			}
 			if (dent == 0) {
-				prix += 92;
+				prix += 116;
 				if(nbd == 5){
-					prix += 63;
+					prix += 73;
 				}
 				poids += 3.4 * nbd;
 				poidsmoins += 3.4 * dentmoins;
 			} else if (dent == 20) {
-				prix += 324;
+				prix += 317;
 				if(nbd == 5){
-					prix += 185;
+					prix += 202;
 				}
 				poids += 4.15 * nbd;
 				poidsmoins += 4.15 * dentmoins;
 			} else {
 				if (nbd == 5) {
-					prix += 616;
+					prix += 548;
 					poids += 22.01;
 					poidsmoins += 17.86;
 				} else {
-					prix += 493;
+					prix += 375;
 					poids += 13.71;
 					poidsmoins += 9.56;
 				}
 			}
 			if (optav == 3){
-				prix += 256;
+				prix += 269;
 				poids += 16.7;
 				poidsmoins += 16.7;
 			} else if (optav == 6) {
-				prix += 1109;
+				prix += 799;
 				poids += 17.15;
 				poidsmoins += 17.15;
 			}
 			if (optar == 1) {
-				prix += 1073;
+				prix += 924;
 				poids += 22.2;
 				poidsmoins += 22.2;
 			} else if (optar == 2) {
 				if (nbd == 5){
-					prix += 191;
+					prix += 462;
 					poids += 9.03;
 				} else {
-					prix += 170;
+					prix += 375;
 					poids += 8.31;
 				}
 			}
@@ -345,10 +353,10 @@
 				for (var i = 0; i < rampe.length; i++) {
 					if (larg <= rampe[i]) {
 						larg = rampe[i];
-						prixtot = 1391;
-						if (larg == 5){
-							prixtot += 30*(7-rang);
-						}
+						prixtot = 1130;
+						//if (larg == 5){
+						//	prixtot += 30*(7-rang);
+						//}
 						i = rampe.length;
 					}
 				}
@@ -358,7 +366,7 @@
 				for (var i = 0; i < rampe.length; i++) {
 					if (larg <= rampe[i]) {
 						larg = rampe[i];
-						prixtot = 4312.5 + (68 * larg);
+						prixtot = 4030 - (11 * larg);
 						i = rampe.length;
 					}
 				}
@@ -366,14 +374,14 @@
 			}
 			prixtot = parseInt(prixtot);
 			if (coutre == "Avec" || coutre == 'Con' || coutre == 'With') {
-				prixtot += 1226;
+				prixtot += 1221;
 				poidstot += 96.36;
 				poidstot = parseInt(poidstot);
 			}
 			prixtot += (rang + 1) * prix;
 			prixtot = parseInt(prixtot);
 			if(rang > 10){
-				prixtot += 403;
+				prixtot += 533;
 			}
 			prixtot = parseInt(prixtot * (1 + augm / 100));
 
@@ -453,6 +461,7 @@
 			if (prixbin == 'Contáctenos' || prixbin == 'Contact us') {
 				$('#prixbin').text('Nous consulter');
 			}
+			$('#attprix').text("*Il ne s'agit que d'une estimation de prix, cela ne correspond en rien au prix définitif.");
 		});
 		$('#flages').on('click',function(){
 			$('#titre1').text('Configurador de binadora');
@@ -463,7 +472,7 @@
 			$('#titre6').text('Cuchillas de guía');
 			$('#titre7').text('Anchura de la viga');
 			$('#titre7b').text('Peso');
-			$('#titre8').text('Precio de la binadora');
+			$('#titre8').text('Precio de la binadora*');
 			$('#titre9').text('Selección de los módulos');
 			$('#titre10').text('Número de brazos');
 			$('#titre11').text('Tipo de brazos');
@@ -486,6 +495,7 @@
 			if (prixbin == 'Nous consulter' || prixbin == 'Contact us') {
 				$('#prixbin').text('Contáctenos');
 			}
+			$('#attprix').text("*Esto es solo una estimación, no corresponde al precio final.");
 		});
 		$('#flagen').on('click',function(){
 			$('#titre1').text('Cultivator configurator');
@@ -496,7 +506,7 @@
 			$('#titre6').text('Disc coulter');
 			$('#titre7').text('Width');
 			$('#titre7b').text('Weight');
-			$('#titre8').text('Cultivator price');
+			$('#titre8').text('Cultivator price*');
 			$('#titre9').text('Unit selection');
 			$('#titre10').text('Number of tines');
 			$('#titre11').text('Type of tines');
@@ -519,6 +529,7 @@
 			if (prixbin == 'Contáctenos' || prixbin == 'Nous consulter') {
 				$('#prixbin').text('Contact us');
 			}
+			$('#attprix').text("*This is only a price estimate, it does not correspond to the final price.");
 		});
 	});
 </script>
