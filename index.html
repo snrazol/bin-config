@@ -119,7 +119,7 @@
 		</center>
 		<div class="texttitle" id="titre2">Caracteristiques generales</div>
 		<div class="texttitle" id="nombin">BMIR 7 ou BSIR 7</div>
-		<div class="row justify-content-center cargen">
+		<div class="row justify-content-center">
 			<div class="col-5 col-sm-4 col-md-3 col-lg-2 my-auto mr-2">
 				<div class="row choix">
 					<label class="col-12 selectlabel" for="type" id="titre3">Type de bineuse</label>
@@ -176,7 +176,7 @@
 				<div class="textres" id="prixbin">13 855 €</div>
 			</div>
 		</div>
-		<div class="textres2" id="attprix">Il ne s'agit que d'une estimation de prix, cela ne correspond en rien au prix définitif.</div>
+		<div class="textres2 cargen" id="attprix">Il ne s'agit que d'une estimation de prix, cela ne correspond en rien au prix définitif.</div>
 		
 		<div class="texttitle" id="titre9">Choix du module</div>
 		<div class="row justify-content-center">
@@ -460,7 +460,7 @@
 			if (prixbin == 'Contáctenos' || prixbin == 'Contact us') {
 				$('#prixbin').text('Nous consulter');
 			}
-			$('#attprix').text("Il ne s'agit que d'une estimation de prix, cela ne correspond en rien au prix définitif.");
+			$('#attprix').text("*Il ne s'agit que d'une estimation de prix, cela ne correspond en rien au prix définitif.");
 		});
 		$('#flages').on('click',function(){
 			$('#titre1').text('Configurador de binadora');
@@ -494,7 +494,7 @@
 			if (prixbin == 'Nous consulter' || prixbin == 'Contact us') {
 				$('#prixbin').text('Contáctenos');
 			}
-			$('#attprix').text("Esto es solo una estimación, no corresponde al precio final.");
+			$('#attprix').text("*Esto es solo una estimación, no corresponde al precio final.");
 		});
 		$('#flagen').on('click',function(){
 			$('#titre1').text('Cultivator configurator');
@@ -528,7 +528,7 @@
 			if (prixbin == 'Contáctenos' || prixbin == 'Nous consulter') {
 				$('#prixbin').text('Contact us');
 			}
-			$('#attprix').text("This is only a price estimate, it does not correspond to the final price.");
+			$('#attprix').text("*This is only a price estimate, it does not correspond to the final price.");
 		});
 	});
 </script>
