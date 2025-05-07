@@ -229,7 +229,6 @@
 <script>
 	$(document).ready(function(){
 		var nb = 0;
-		//var augm = 5;
 		var prixini = parseInt(13855);
 		var milleprixini = parseInt(prixini / 1000);
 		var centprixini = ("000" + (prixini - (milleprixini * 1000))).slice(-3);
