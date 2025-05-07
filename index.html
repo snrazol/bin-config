@@ -379,7 +379,7 @@
 			if(rang > 10){
 				prixtot += 533;
 			}
-			prixtot = parseInt(prixtot * (1 + augm / 100));
+			prixtot = parseInt(prixtot);
 
 			if (poidstot >= 1000){
 				var mille = parseInt(poidstot/1000);
