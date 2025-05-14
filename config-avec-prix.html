@@ -159,11 +159,14 @@
 				<div class="textres" id="titre7">Largeur de poutre</div>
 				<div class="textres" id="largbin">4.2 m</div>
 				<hr />
-				<div class="textres" id="titre7b">Poids*</div>
+				<div class="textres" id="titre7b">Poids</div>
 				<div class="textres" id="poidsbin">884 kg</div>
+				<hr />
+				<div class="textres" id="titre8">Prix de la bineuse*</div>
+				<div class="textres" id="prixbin">13 855 €</div>
 			</div>
 		</div>
-		<div class="textres2 cargen" id="attprix">*Il ne s'agit que d'une estimation, cela ne correspond en rien au poids définitif.</div>
+		<div class="textres2 cargen" id="attprix">*Il ne s'agit que d'une estimation de prix, cela ne correspond en rien au prix définitif.</div>
 		
 		<div class="texttitle" id="titre9">Choix du module</div>
 		<div class="row justify-content-center">
@@ -215,13 +218,19 @@
 <script>
 	$(document).ready(function(){
 		var nb = 0;
+		var prixini = parseInt(13855);
+		var milleprixini = parseInt(prixini / 1000);
+		var centprixini = ("000" + (prixini - (milleprixini * 1000))).slice(-3);
 		$('#rang').val(7);
+		$('#prixbin').text(milleprixini + ' ' + centprixini + ' €');
 		$('#ecart').val(500);
 		$('#type').val('Repliable');
 		$('#optav').val(3);
 		$('select').on('change',function(){
 			var poids = 0;
 			var poidstot = 0;
+			var prix = 0;
+			var prixtot = 0;
 			$('option').prop('disabled',false);
 			var dent = parseInt($('#dent').val());
 			var optav = parseInt($('#optav').val());
@@ -258,46 +267,66 @@
 			if (nbdent == 10) {
 				var nbd = 5;
 				var dentmoins = 4;
+				prix += 850;
 				poids += 51.12;
 				var poidsmoins = 5.37;
 			} else {
 				var nbd = 3;
 				var dentmoins = 2;
+				prix += 850;
 				poids += 48.06;
 				var poidsmoins = 2.31;
 			}
 			if (dent == 0) {
+				prix += 116;
+				if(nbd == 5){
+					prix += 73;
+				}
 				poids += 3.4 * nbd;
 				poidsmoins += 3.4 * dentmoins;
 			} else if (dent == 20) {
+				prix += 317;
+				if(nbd == 5){
+					prix += 202;
+				}
 				poids += 4.15 * nbd;
 				poidsmoins += 4.15 * dentmoins;
 			} else {
 				if (nbd == 5) {
+					prix += 548;
 					poids += 22.01;
 					poidsmoins += 17.86;
 				} else {
+					prix += 375;
 					poids += 13.71;
 					poidsmoins += 9.56;
 				}
 			}
 			if (optav == 3){
+				prix += 269;
 				poids += 16.7;
 				poidsmoins += 16.7;
 			} else if (optav == 6) {
+				prix += 799;
 				poids += 17.15;
 				poidsmoins += 17.15;
 			}
 			if (optar == 1) {
+				prix += 924;
 				poids += 22.2;
 				poidsmoins += 22.2;
 			} else if (optar == 2) {
 				if (nbd == 5){
+					prix += 462;
 					poids += 9.03;
 				} else {
+					prix += 375;
 					poids += 8.31;
 				}
 			}
+			prix *= 100;
+			prix = parseInt(prix);
+			prix /= 100;
 			poids *= 100;
 			poids = parseInt(poids);
 			poids /= 100;
@@ -312,6 +341,7 @@
 				for (var i = 0; i < rampe.length; i++) {
 					if (larg <= rampe[i]) {
 						larg = rampe[i];
+						prixtot = 1130;
 						i = rampe.length;
 					}
 				}
@@ -321,15 +351,24 @@
 				for (var i = 0; i < rampe.length; i++) {
 					if (larg <= rampe[i]) {
 						larg = rampe[i];
+						prixtot = 4000 + (11 * larg);
 						i = rampe.length;
 					}
 				}
 				poidstot = parseInt(368.92 - (24.22 * (6.6 - larg)) + ((rang + 1) * poids) - poidsmoins);
 			}
+			prixtot = parseInt(prixtot);
 			if (coutre == "Avec" || coutre == 'Con' || coutre == 'With') {
+				prixtot += 1221;
 				poidstot += 96.36;
 				poidstot = parseInt(poidstot);
 			}
+			prixtot += (rang + 1) * prix;
+			prixtot = parseInt(prixtot);
+			if(rang > 10){
+				prixtot += 533;
+			}
+			prixtot = parseInt(prixtot);
 
 			if (poidstot >= 1000){
 				var mille = parseInt(poidstot/1000);
@@ -340,6 +379,25 @@
 			}
 
 			$('#largbin').text(larg+' m');
+			if (((type == 'Fixe' || type == 'Fija' || type == 'Fixed') && larg > 7.4) || ((type == 'Repliable' || type == 'Plegable' || type == 'Folding') && larg > 6.6)) {
+				if (type == 'Fixe' || type == 'Repliable') {
+					$('#prixbin').text('Nous consulter');
+				}
+				if (type == 'Fija' || type == 'Plegable') {
+					$('#prixbin').text('Contáctenos');
+				}
+				if (type == 'Fixed' || type == 'Folding') {
+					$('#prixbin').text('Contact us');
+				}
+			} else {
+				if (prixtot >= 1000){
+					var milleprixtot = parseInt(prixtot/1000);
+					var centprixtot = ("000" + (prixtot - (milleprixtot * 1000))).slice(-3);
+					$('#prixbin').text(milleprixtot + ' ' + centprixtot + ' €');
+				} else {
+					$('#prixbin').text(prixtot + ' €');
+				}
+			}
 
 			if(ecart >= 600){
 				if(type == 'Fixe'){
