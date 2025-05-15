@@ -108,7 +108,7 @@
 	<div class="col mb-3">
 		<div class="textbig" id="titre1">Configurateur de bineuse</div>
 		<div class="texttitle" id="titre2">Caracteristiques generales</div>
-		<div class="texttitle" id="nombin">BMIR 7 ou BSIR 7</div>
+		<div class="texttitle" id="nombin">BSIR 7</div>
 		<div class="row justify-content-center">
 			<div class="col-5 col-sm-4 col-md-4 col-lg-3 my-auto mr-2">
 				<div class="row choix">
@@ -123,12 +123,10 @@
 					<label class="col-12 selectlabel" for="rang" id="titre4">Nombre de rangs</label>
 					<select class="col selectbox" id="rang" name="rang">
 						<option>4</option>
-						<option>5</option>
 						<option>6</option>
 						<option>7</option>
 						<option>8</option>
 						<option>9</option>
-						<option>10</option>
 						<option>11</option>
 						<option>12</option>
 					</select>
@@ -171,8 +169,8 @@
 				<div class="row choix">
 					<label class="col-12 selectlabel" for="nbdent" id="titre10">Nombre de dents</label>
 					<select class="col selectbox" id="nbdent" name="nbdent">
-						<option value="20" id="titre18">3 (Rang <= 600)</option>
-						<option value="10" id="titre19">5 (Rang > 600)</option>
+						<option value="20" id="titre18">3 (Rang <= 500)</option>
+						<option value="10" id="titre19">5 (Rang > 500)</option>
 					</select>
 				</div>
 				
@@ -231,6 +229,84 @@
 			var ecart = parseInt($('#ecart').val());
 			var type = $('#type').val();
 			var coutre = $('#coutre').val();
+			var renable = document.querySelectorAll('[disabled]');
+			for (var i = 0; i < renable.length; i++) {
+				renable[i].removeAttribute('disabled');
+			}
+			if (type == 'Fixe') {
+				document.getElementById("rang").options[5].disabled = true;
+				if (rang == 11) {
+					rang = 4;
+					document.getElementById("rang").options[0].selected = true;
+				}
+				if (rang == 4) {
+					if (ecart < 600) {
+						document.getElementById("ecart").options[3].selected = true;
+						ecart = 600;
+					}
+					for (var i = 0; i < 3; i++) {
+						document.getElementById("ecart").options[i].disabled = true;
+					}
+				} else if (rang == 7 || rang == 9 || rang == 12) {
+					if (ecart > 600) {
+						document.getElementById("ecart").options[3].selected = true;
+						ecart = 600;
+					}
+					for (var i = 4; i < 7; i++) {
+						document.getElementById("ecart").options[i].disabled = true;
+					}
+				}
+			} else {
+				document.getElementById("rang").options[0].disabled = true;
+				if (rang == 4) {
+					rang = 6;
+					document.getElementById("rang").options[1].selected = true;
+				} else if (rang != 8) {
+					document.getElementById("ecart").options[0].disabled = true;
+				}
+				if (rang == 6) {
+					if (ecart < 700) {
+						document.getElementById("ecart").options[4].selected = true;
+						ecart = 700;
+					}
+					for (var i = 0; i < 4; i++) {
+						document.getElementById("ecart").options[i].disabled = true;
+					}
+				} else if (rang == 7 || rang == 9) {
+					if (ecart > 600) {
+						document.getElementById("ecart").options[3].selected = true;
+						ecart = 600;
+					}
+					for (var i = 4; i < 7; i++) {
+						document.getElementById("ecart").options[i].disabled = true;
+					}
+				} else if (rang == 11) {
+					if (ecart > 550) {
+						document.getElementById("ecart").options[2].selected = true;
+						ecart = 550;
+					}
+					for (var i = 3; i < 7; i++) {
+						document.getElementById("ecart").options[i].disabled = true;
+					}
+				} else if (rang == 12) {
+					if (ecart > 500) {
+						document.getElementById("ecart").options[2].selected = true;
+						ecart = 500;
+					}
+					for (var i = 2; i < 7; i++) {
+						document.getElementById("ecart").options[i].disabled = true;
+					}
+				}
+			}
+			if (ecart > 550) {
+				document.getElementById("nbdent").options[1].selected = true;
+				nbdent = 10;
+				document.getElementById("nbdent").options[0].disabled = true;
+			} else if (ecart < 550) {
+				document.getElementById("nbdent").options[0].selected = true;
+				nbdent = 20;
+				document.getElementById("nbdent").options[1].disabled = true;
+			}
 			if (dent == 40) {
 				if (optav !== 0) {
 					$('#optav').val(0);
@@ -315,6 +391,19 @@
 						i = rampe.length;
 					}
 				}
+				if (rang == 4) {
+					larg = 3.5;
+				} else if (rang == 6 && ecart <= 600) {
+					larg = 4.2;
+				} else if ((rang == 6 && ecart > 600) || ((rang == 7 || rang == 8) && ecart <= 600)) {
+					larg = 5;
+				} else if (rang == 9) {
+					larg = 6;
+				} else if (rang == 8 && ecart > 600) {
+					larg = 6.6;
+				} else if (rang == 12) {
+					larg = 7.4;
+				}
 				poidstot = parseInt(80.86 + (24.22 * larg) + ((rang + 1) * poids) - poidsmoins);
 			} else {
 				var rampe = [4.2,5,6,6.6];
@@ -323,6 +412,15 @@
 						larg = rampe[i];
 						i = rampe.length;
 					}
+				}
+				if ((rang == 7 || rang == 8) && ecart <= 500) {
+					larg = 4.2;
+				} else if (rang == 6 || ((rang == 7 || rang == 8) && ecart > 500 && ecart < 700)) {
+					larg = 5;
+				} else if (rang == 9) {
+					larg = 6;
+				} else if ((rang == 8 && ecart >= 700) || rang == 11 || rang == 12) {
+					larg = 6.6;
 				}
 				poidstot = parseInt(368.92 - (24.22 * (6.6 - larg)) + ((rang + 1) * poids) - poidsmoins);
 			}
@@ -340,21 +438,34 @@
 			}
 
 			$('#largbin').text(larg+' m');
-
-			if(ecart >= 600){
-				if(type == 'Fixe'){
+			
+			if (type == 'Fixe') {
+				if (rang == 4 || (ecart >=600 && (rang == 6 || rang == 8))) {
 					$('#nombin').text('BLI ' + rang);
 				} else {
-					$('#nombin').text('BLIR ' + rang);
+					if (rang == 7) {
+						$('#nombin').text('BMI ' + rang + ' ou BSI ' + rang);
+					} else if (rang == 9) {
+						$('#nombin').text('BMI ' + rang);
+					} else {
+						$('#nombin').text('BSI ' + rang);
+					}
 				}
 			} else {
-				if(type == 'Fixe'){
-					$('#nombin').text('BMI ' + rang + ' ou BSI ' + rang);
+				if (ecart >=700) {
+					$('#nombin').text('BLIR ' + rang);
 				} else {
-					$('#nombin').text('BMIR ' + rang + ' ou BSIR ' + rang);
-				}
+					if ((rang == 7 || rang == 8) && ecart > 500) {
+						$('#nombin').text('BMIR ' + rang);
+					} else if ((rang == 7 || rang == 8)) {
+						$('#nombin').text('BSIR ' + rang);
+					} else if (rang == 12) {
+						$('#nombin').text('BSIR ' + rang);
+					} else {
+						$('#nombin').text('BMIR ' + rang);
+					}
+				}				
 			}
-
 		});
 	});
 </script>
